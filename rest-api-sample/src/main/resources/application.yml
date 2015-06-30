@@ -1,0 +1,13 @@
+
+logging:
+   level:
+       org.springframework: INFO
+       com.demo: DEBUG
+---
+
+spring:
+   profiles: production
+logging:
+   level:
+       org.springframework: INFO
+       com.demo: INFO
