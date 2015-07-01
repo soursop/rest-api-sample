@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +29,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(path="/board/article", method=RequestMethod.POST)
-	public void addArticle(@ModelAttribute Article article) {
+	public void addArticle(@Valid @ModelAttribute Article article) {
 		articleRepositry.save(article);
 	}
 

@@ -5,14 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Article {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String contents;
+	@NotEmpty
 	private String writer;
 	public long getId() {
 		return id;
