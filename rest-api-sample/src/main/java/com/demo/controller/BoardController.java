@@ -42,11 +42,13 @@ public class BoardController {
 		articleRepositry.save(article);
 	}
 
+	@ApiOperation(value = "articles", notes = "get all articles", httpMethod="GET")
 	@RequestMapping(value={"articles"}, method=RequestMethod.GET)
 	public List<Article> getArticles() {
 		return (List<Article>) articleRepositry.findAllByWithOutContent();
 	}
 
+	@ApiOperation(value = "articles/{id}", notes = "get article by id", httpMethod="GET")
 	@RequestMapping(value={"articles/{id}"}, method=RequestMethod.GET)
 	public Article getArticle(@PathVariable long id) {
 		return getArticleById(id);
