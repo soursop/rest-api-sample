@@ -70,6 +70,7 @@ public class BoardController {
 	@RequestMapping(value={"articles/{id}"}, method=RequestMethod.PUT)
 	public Article updateEntireArticle(@PathVariable long id, @Valid @ModelAttribute Article article) {
 		Article finded = getArticleById(id);
+		finded.update(article);
 		Article saved = articleRepositry.save(finded);
 		return saved;
 	}
