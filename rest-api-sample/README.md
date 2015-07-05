@@ -2,7 +2,7 @@
 
 ## FIRST STEP 
 
-run RestApiSamplwApplication.java (optional: -Dspring.profiles.active=live)
+run RestApiSampleApplication.java (optional: -Dspring.profiles.active=live)
 
 ## CHECK DOCUMENT
 
