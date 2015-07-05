@@ -66,8 +66,16 @@ public class BoardController {
 		articleRepositry.delete(id);
 	}
 
-	@ApiOperation(value = "articles/{id}", notes = "uppdate article", httpMethod="PUT")
+	@ApiOperation(value = "articles/{id}", notes = "uppdate while article", httpMethod="PUT")
 	@RequestMapping(value={"articles/{id}"}, method=RequestMethod.PUT)
+	public Article updateEntireArticle(@PathVariable long id, @Valid @ModelAttribute Article article) {
+		Article finded = getArticleById(id);
+		Article saved = articleRepositry.save(finded);
+		return saved;
+	}
+
+	@ApiOperation(value = "articles/{id}", notes = "uppdate parts of article", httpMethod="PATCH")
+	@RequestMapping(value={"articles/{id}"}, method=RequestMethod.PATCH)
 	public Article updateArticle(@PathVariable long id, @ModelAttribute Article article) {
 		Article finded = getArticleById(id);
 		finded.update(article);
