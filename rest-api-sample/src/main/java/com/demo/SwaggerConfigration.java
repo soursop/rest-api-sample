@@ -19,7 +19,8 @@ import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 @EnableSwagger
 @ComponentScan("com.demo")
 public class SwaggerConfigration implements EnvironmentAware {
-    public static final String DEFAULT_INCLUDE_PATTERN = "/(board|\\{repository\\})/.*";
+    public static final String DEFAULT_INCLUDE_PATTERN = "/board/.*";
+//    public static final String DEFAULT_INCLUDE_PATTERN = "/(board|\\{repository\\})/.*";
  
     private RelaxedPropertyResolver propertyResolver;
     @Value("${app.docs}")
