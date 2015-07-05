@@ -60,7 +60,7 @@ public class Article {
 			this.contents = target.contents;
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", contents="
