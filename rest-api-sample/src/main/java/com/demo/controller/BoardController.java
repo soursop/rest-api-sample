@@ -44,7 +44,7 @@ public class BoardController {
 
 	@RequestMapping(value={"articles"}, method=RequestMethod.GET)
 	public List<Article> getArticles() {
-		return (List<Article>) articleRepositry.findAll();
+		return (List<Article>) articleRepositry.findAllByWithOutContent();
 	}
 
 	@RequestMapping(value={"articles/{id}"}, method=RequestMethod.GET)
