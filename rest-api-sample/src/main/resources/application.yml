@@ -1,12 +1,23 @@
-
+## DEFAULT
 logging:
    level:
        org.springframework: INFO
        com.demo: DEBUG
----
 
+swagger:
+   title: Article API
+   description: Article 관련 API 정보를 노출한다
+   resourcePackage: com.demo
+
+app:
+   docs: http://localhost:8080
+          
+---
+## LIVE
+   
 spring:
    profiles: live
+   
 logging:
    level:
        org.springframework: INFO

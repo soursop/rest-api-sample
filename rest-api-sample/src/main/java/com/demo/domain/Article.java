@@ -7,6 +7,10 @@ import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 @Entity
 public class Article {
 	
@@ -14,16 +18,17 @@ public class Article {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	@NotEmpty
+	@ApiModelProperty(value = "title of Article")
 	private String title;
 	@NotEmpty
+	@ApiModelProperty(value = "contents of Article")
 	private String contents;
 	@NotEmpty
+	@ApiModelProperty(value = "writer of Article")
 	private String writer;
+	
 	public long getId() {
 		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	public String getTitle() {
 		return title;
@@ -42,6 +47,18 @@ public class Article {
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	
+	public void update(Article target) {
+		if(target.title != null) {
+			this.title = target.title;
+		}
+		if(target.writer != null) {
+			this.writer = target.writer;
+		}
+		if(target.contents != null) {
+			this.contents = target.contents;
+		}
 	}
 	
 	@Override

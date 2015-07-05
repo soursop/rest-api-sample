@@ -2,6 +2,7 @@ package com.demo.validator;
 
 import java.util.Set;
 
+
 import javax.validation.ConstraintViolation;
 import javax.validation.metadata.ConstraintDescriptor;
 
@@ -13,12 +14,18 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+/**
+ * ProfileValidatorFactoryBean
+ * @author Gim Gyoung Jin
+ * change print strategy by -Dspring.profiles.active
+ */
 public class ProfileValidatorFactoryBean extends LocalValidatorFactoryBean {
 
 	private final boolean isNonLive;
 
 	public ProfileValidatorFactoryBean(Environment environment) {
 		super();
+		// if live profile is not accepted => e.g. dev, local ... else
 		isNonLive = !environment.acceptsProfiles("live");
 	}
 	
@@ -27,7 +34,7 @@ public class ProfileValidatorFactoryBean extends LocalValidatorFactoryBean {
 			Set<ConstraintViolation<Object>> violations, Errors errors) {
 		
 		boolean isNotBIndException = !(errors instanceof BindingResult);
-		if (isNonLive && isNotBIndException) {
+		if (isNonLive || isNotBIndException) {
 			super.processConstraintViolations(violations, errors);
 			return;
 		}
@@ -49,12 +56,8 @@ public class ProfileValidatorFactoryBean extends LocalValidatorFactoryBean {
 								errors.getObjectName(), errorCodes, errorArgs, violation.getMessage()));
 					}
 					else {
-						Object rejectedValue = getRejectedValue(field, violation, bindingResult);
-						String[] errorCodes = bindingResult.resolveMessageCodes(errorCode, field);
-						new FieldError(
-								errors.getObjectName(), nestedField, rejectedValue, false,
-								errorCodes, errorArgs, violation.getMessage());
-						bindingResult.addError(new ObjectError(errors.getObjectName(), violation.getMessage()));
+						bindingResult.addError(new FieldError(
+								errors.getObjectName(), nestedField, violation.getMessage()));
 					}
 				}
 				catch (NotReadablePropertyException ex) {
@@ -65,7 +68,13 @@ public class ProfileValidatorFactoryBean extends LocalValidatorFactoryBean {
 			}
 		}		
 	}
-	
-	
 
+	private String determineErrorCode(ConstraintDescriptor<?> cd) {
+		return cd.getAnnotation().annotationType().getSimpleName();
+	}
+
+	private String determineField(ConstraintViolation<Object> violation) {
+		return violation.getPropertyPath().toString();
+	}
+	
 }
