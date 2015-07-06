@@ -1,5 +1,12 @@
 # REST-API-EXAMPLE
 
+## USE LIBRARY
+
+- Spring Data JPA
+- Spring Rest
+- Spring Boot
+- Swagger (API Document library)
+
 ## RECOMMANDED ENVIRONMENT
 
 Java 7, Java 8
