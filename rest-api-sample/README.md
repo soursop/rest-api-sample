@@ -20,7 +20,7 @@ or
 
     java -jar {projectRoot}/target/rest-api-sample-0.0.1-SNAPSHOT.war -Dspring.profiles.active=live
 
-You could be able to see different BindingExceptionMessage depending on profile option (`live` or NONE)
+You would be able to see different BindingExceptionMessage depending on profile option (`live` or NONE)
 
 ## AFTER EXECUTE, PLEASE CHECK DOCUMENT
 
