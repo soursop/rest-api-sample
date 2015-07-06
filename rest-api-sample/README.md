@@ -1,5 +1,10 @@
 # REST-API-EXAMPLE
 
+## RECOMMANDED ENVIORNMENT
+
+Java 7, Java 8
+Maven 3.1.0
+
 ## BEFORE STEP 
 
 please update maven dependency
