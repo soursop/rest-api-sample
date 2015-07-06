@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -16,6 +17,7 @@ import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import com.demo.repository.SelectRepositoryFactoryBean;
 import com.demo.validator.ProfileValidatorFactoryBean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @SpringBootApplication
 @ComponentScan("com.demo")
+@EnableJpaRepositories(repositoryFactoryBeanClass = SelectRepositoryFactoryBean.class)
 public class RestApiSampleApplication extends WebMvcConfigurationSupport {
 
 	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
@@ -35,7 +38,7 @@ public class RestApiSampleApplication extends WebMvcConfigurationSupport {
 	
 	@Autowired
 	private Environment environment;
-	
+
 	private ApplicationContext applicationContext;
 	
 	@Bean

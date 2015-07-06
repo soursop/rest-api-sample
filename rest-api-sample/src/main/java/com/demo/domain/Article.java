@@ -27,6 +27,14 @@ public class Article {
 	@ApiModelProperty(value = "writer of Article")
 	private String writer;
 	
+	public Article() { }
+	
+	public Article(long id, String title, String writer) {
+		this.id = id;
+		this.title = title;
+		this.writer = writer;
+	}
+
 	public long getId() {
 		return id;
 	}

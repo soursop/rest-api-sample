@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -45,7 +46,7 @@ public class BoardController {
 	@ApiOperation(value = "articles", notes = "get all articles", httpMethod = "GET")
 	@RequestMapping(value = { "articles" }, method = RequestMethod.GET)
 	public List<Article> getArticles() {
-		return (List<Article>) articleRepository.findAllByWithOutContent();
+		return articleRepository.findAllBySelectInputs(Arrays.asList("id", "title", "writer"));
 	}
 
 	@ApiOperation(value = "articles/{id}", notes = "get article by id", httpMethod = "GET")
